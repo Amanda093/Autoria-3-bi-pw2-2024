@@ -58,6 +58,53 @@ class Autoria
     }
 
     // ===== parte 3 - métodos =====
+
+    /* ARRUMAR
+    function salvar()
+    {
+        try {
+            $this -> conn = new Conectar();
+            $sql = $this -> conn -> prepare("insert into Autoria values (null,?,?,?)");
+            @$sql -> bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getDatalancamento(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getEditora(), PDO::PARAM_STR);
+            // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
+            if($sql -> execute() == 1)  
+            {
+                return '
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    Swal.fire ({
+                    title: "Registrado com sucesso!",
+                    
+                    imageUrl: "../img/peixinho.gif",
+                    imageWidth: 200,
+                    imageAlt: "Peixe colorido"
+                    })
+                  });
+                </script>';
+            }
+            $this -> conn = null;
+        } catch(PDOException $exc) {
+            return '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao registrar!",
+                footer: "'. $exc -> getMessage() . '",
+                
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
+        }
+    }
+        */
+
     function listar()
     {
         try {
