@@ -92,7 +92,7 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Livro values (null,?,?,?,?,?)");
+            $sql = $this -> conn -> prepare("insert into Livo values (null,?,?,?,?,?)");
             @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
             @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
             @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
@@ -123,6 +123,9 @@ class Autoria
                 title: "Houve um erro ao registrar!",
                 footer: "'. $exc -> getMessage() . '",
                 
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
                 imageUrl: "../img/peixinho.gif",
                 imageWidth: 200,
                 imageAlt: "Peixe colorido",

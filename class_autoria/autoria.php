@@ -59,7 +59,6 @@ class Autoria
 
     // ===== parte 3 - métodos =====
 
-    /* ARRUMAR
     function salvar()
     {
         try {
@@ -83,7 +82,9 @@ class Autoria
                     })
                   });
                 </script>';
+                */
             }
+                /* ARRUMAR
             $this -> conn = null;
         } catch(PDOException $exc) {
             return '
@@ -98,12 +99,11 @@ class Autoria
                 imageAlt: "Peixe colorido",
 
                 background: "#100d16",
-                })
+            })
               });
-            </script>';
+            </script>';*/
         }
     }
-        */
 
     function listar()
     {
