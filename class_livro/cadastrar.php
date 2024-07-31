@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <body>
+        <?php include_once '../layouts/navbar.php' ?>
+    
+        <section class="right">
+            <form name="cliente" method="POST" action="">
+                <h2 class="title"> Dados do Livro </h2>
+                <br>
+                <div class="row">
+                    <label for="">Título</label>
+                    <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                </div>
+                <div class="row">
+                    <label for="">Categoria</label>
+                    <select name="txtCategoria" size="1">
+                        <option value="Fiçcão">Ficção</option>
+                        <option value="Não-Fiçcão">Não-ficção</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Mistério">Mistério</option>
+                        <option value="Fantasia">Fantasia</option>
+                        <option value="Fiçcão-cientifica">Ficção Científica</option>
+                        <option value="Biografia">Biografia</option>
+                        <option value="Autoajuda">Autoajuda</option>
+                        <option value="Histórico">Histórico</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Jovem-adulto">Jovem Adulto</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Poesia">Poesia</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for="">ISBN</label>
+                    <input name="txtISBN" type="tel" maxlength="13">
+                </div>
+                <div class="row">
+                    <label for="">Idioma</label>
+                    <input name="txtIdioma" type="text" size="40" maxlength="40">
+                </div>
+                <div class="row">
+                    <label for="">Quantidade de Páginas</label>
+                    <input name="txtQtdePag" type="number">
+                </div>
+                <div class="row">
+                    <button name="btnEnviar" type="submit">Cadastrar</button>
+                    <button name="btnLimpar" type="reset">Limpar</button>
+                </div>
+            </form>
+        </section>
+        <?php
+        extract($_POST, EXTR_OVERWRITE);
+        if(isset($btnEnviar))
+        {
+            include_once 'Autoria.php';
+            $aut = new Autoria();
+            $aut -> setTitulo($txtTitulo);
+            $aut -> setCategoria($txtCategoria);
+            $aut -> setISBN($txtISBN);
+            $aut -> setIdioma($txtIdioma);
+            $aut -> setQtdepag($txtQtdePag);
+            print $aut -> salvar();
+        }
+        ?>
+    </body>
+</html>
