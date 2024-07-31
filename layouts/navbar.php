@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" href="../img/autoria.png" />
-    <title>Autoria</title>
+
+    <!-- NÃO FUNCIONA 
+      <link rel="icon" href="../img/autoria.png" />
+      <title>Autoria</title>
+    -->
 </head>
 
 <body>

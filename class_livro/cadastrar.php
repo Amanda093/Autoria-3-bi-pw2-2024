@@ -9,7 +9,7 @@
                 <br>
                 <div class="row">
                     <label for="">Título</label>
-                    <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                    <input name="txtTitulo" type="text" size="40" maxlength="40" required></p>
                 </div>
                 <div class="row">
                     <label for="">Categoria</label>
@@ -32,15 +32,15 @@
                 </div>
                 <div class="row">
                     <label for="">ISBN</label>
-                    <input name="txtISBN" type="tel" maxlength="13">
+                    <input name="txtISBN" type="tel" maxlength="13" required>
                 </div>
                 <div class="row">
                     <label for="">Idioma</label>
-                    <input name="txtIdioma" type="text" size="40" maxlength="40">
+                    <input name="txtIdioma" type="text" size="40" maxlength="40" required>
                 </div>
                 <div class="row">
                     <label for="">Quantidade de Páginas</label>
-                    <input name="txtQtdePag" type="number">
+                    <input name="txtQtdePag" type="number" required>
                 </div>
                 <div class="row">
                     <button name="btnEnviar" type="submit">Cadastrar</button>
@@ -48,6 +48,7 @@
                 </div>
             </form>
         </section>
+
         <?php
         extract($_POST, EXTR_OVERWRITE);
         if(isset($btnEnviar))
@@ -59,7 +60,7 @@
             $aut -> setISBN($txtISBN);
             $aut -> setIdioma($txtIdioma);
             $aut -> setQtdepag($txtQtdePag);
-            print $aut -> salvar();
+            echo $aut -> salvar();
         }
         ?>
     </body>

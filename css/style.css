@@ -8,6 +8,7 @@
     --dark-gray: #201b2c;
     --green: #00ff88;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -19,11 +20,12 @@
     margin-inline: auto;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    /* outline: solid 2px red; */
+    /*outline: solid 2px red;*/
 }
 body {
     background-color: var(--light-gray);
     display: flex;
+    height: 100vh;
 }
 /* HEADER */
 header {
@@ -34,12 +36,14 @@ header {
    color: var(--white);
    display: flex;
    align-items: center;
+   position: fixed;
 }
 .right {
+    margin-left: 30vw;
+    margin-top: 10vh;
     width: 70vw;
-    height: 100vh;
+    height: fit-content;
     display: flex; 
-    align-items: center;
     justify-content: center;
 }
 .container_header {

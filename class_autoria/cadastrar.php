@@ -18,11 +18,11 @@
             <br>
             <div class="row">
                 <label for="">Título</label>
-                <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                <input name="txtTitulo" type="text" size="40" maxlength="40" required></p>
             </div>
             <div class="row">
                 <label for="">Categoria</label>
-                <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                <input name="txtTitulo" type="text" size="40" maxlength="40" required></p>
             </div>
         </form>
 
