@@ -14,15 +14,27 @@
 
     <section class="right">
         <form name="cliente" method="POST" action="">
-            <h2 class="title"> Dados do Livro </h2>
+            <h2 class="title"> Dados do Autor </h2>
             <br>
             <div class="row">
-                <label for="">Título</label>
-                <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                <label for="">Nome do Autor</label>
+                <input name="txtNome" type="text" size="40" maxlength="40" required>
             </div>
             <div class="row">
-                <label for="">Categoria</label>
-                <input name="txtTitulo" type="text" size="40" maxlength="40"></p>
+                <label for="">Sobrenome</label>
+                <input name="txtSobrenome" type="text" size="40" maxlength="40" required>
+            </div>
+            <div class="row">
+                <label for="">Email</label>
+                <input name="txtEmail" type="email" size="40" maxlength="40" required>
+            </div>
+            <div class="row">
+                <label for="">Data de Nascimento</label>
+                <input name="txtDataNasc" type="date" size="40" maxlength="40" required>
+            </div>
+            <div class="row">
+                <button name="btnEnviar" type="submit">Cadastrar</button>
+                <button name="btnLimpar" type="reset">Limpar</button>
             </div>
         </form>
 
@@ -32,12 +44,11 @@
         {
             include_once 'Autoria.php';
             $aut = new Autoria();
-            $aut -> setTitulo($txtTitulo);
-            $aut -> setCategoria($txtCategoria);
-            $aut -> setISBN($txtISBN);
-            $aut -> setIdioma($txtIdioma);
-            $aut -> setQtdepag($txtQtdePag);
-            echo "<h3><br><br>" . $aut -> salvar() . "</h3>";
+            $aut -> setNomeautor($txtNome);
+            $aut -> setSobrenome($txtSobrenome);
+            $aut -> setEmail($txtEmail);
+            $aut -> setNasc($txtDataNasc);
+            echo $aut -> salvar();
         }
         ?>
     </section>

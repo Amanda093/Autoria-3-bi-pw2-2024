@@ -9,7 +9,7 @@
                 <br>
                 <div class="row">
                     <label for="">Título</label>
-                    <input name="txtTitulo" type="text" size="40" maxlength="40" required></p>
+                    <input name="txtTitulo" type="text" size="40" maxlength="40" required>
                 </div>
                 <div class="row">
                     <label for="">Categoria</label>

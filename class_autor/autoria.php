@@ -70,6 +70,55 @@ class Autoria
     }
 
     // ===== parte 3 - métodos =====
+
+    function salvar()
+    {
+        try {
+            $this -> conn = new Conectar();
+            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getNomeautor(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getSobrenome(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getEmail(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getNasc(), PDO::PARAM_STR);
+            // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
+            if($sql -> execute() == 1)
+            {
+                return '
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    Swal.fire ({
+                    title: "Registrado com sucesso!",
+                    
+                    imageUrl: "../img/peixinho.gif",
+                    imageWidth: 200,
+                    imageAlt: "Peixe colorido"
+                    })
+                  });
+                </script>';
+            }
+            $this -> conn = null;
+        } catch(PDOException $exc) {
+            return '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao registrar!",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
+        }
+    }
+
     function listar()
     {
         try {

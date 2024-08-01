@@ -63,10 +63,11 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Autoria values (null,?,?,?)");
-            @$sql -> bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getDatalancamento(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getEditora(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Autria values (?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getCod_autor(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getCod_livro(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getDatalancamento(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getEditora(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
             if($sql -> execute() == 1)  
             {
@@ -82,9 +83,7 @@ class Autoria
                     })
                   });
                 </script>';
-                */
             }
-                /* ARRUMAR
             $this -> conn = null;
         } catch(PDOException $exc) {
             return '
@@ -101,7 +100,7 @@ class Autoria
                 background: "#100d16",
             })
               });
-            </script>';*/
+            </script>';
         }
     }
 
