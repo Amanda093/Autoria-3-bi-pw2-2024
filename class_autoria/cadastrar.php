@@ -9,7 +9,7 @@
                 <br>
                 <div class="row">
                     <label for="">Código do Autor</label> 
-                    <input name="txtCodAutor" type="number" size="40" maxlength="40" required>
+                    <input name="txtCodLivro" type="number" size="40" maxlength="40" required>
                 </div>
                 <div class="row">
                     <label for="">Código do Livro</label>  

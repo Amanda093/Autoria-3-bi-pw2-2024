@@ -60,7 +60,7 @@ class Autoria
     // ===== parte 3 - métodos =====
 
     function salvar()
-    {
+{
         try {
             $this -> conn = new Conectar();
             $sql = $this -> conn -> prepare("insert into Autria values (?,?,?,?)");
@@ -117,6 +117,22 @@ class Autoria
             echo "Erro ao executar consulta. " . $exc -> getMessage();
         }
     }
+    
+    /*
+    function apresentar()
+    {
+        try {
+            $query = $this -> conn -> query("select cod_autor from autor");  
+            while($reg = $query -> fetch_array()) { 
+                echo 
+                "
+                <option value = "echo $reg['cod_autor']; ">
+                    echo $reg['nome'];
+                </option>
+                "
+            }
+        }
+    } */
 } // encerramento de classe Autoria
 
 ?>
