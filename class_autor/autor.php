@@ -1,89 +1,72 @@
-<head>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-</head>
 <?php
 
 include_once '../conectar.php';
 
     // ===== parte 1 - atributos =====
-class Autoria
+class Autor
 {
-    private $cod_livro;
-    private $titulo;
-    private $categoria;
-    private $ISBN;
-    private $idioma;
-    private $qtdepag;
+    private $cod_autor;
+    private $nomeautor;
+    private $sobrenome;
+    private $email;
+    private $nasc;
     private $conn;
 
     // ===== parte 2 - os getters e setters =====
 
-    // cod_livro
-    public function getCod_livro()
+    // cod_autor
+    public function getCod_autor()
     {
-        return $this->cod_livro;
+        return $this->cod_autor;
     }
 
-    public function setCod_livro($icod_livro)
+    public function setCod_autor($icod_autor)
     {
-        $this->cod_livro = $icod_livro;
+        $this->cod_autor = $icod_autor;
     }
 
-    // titulo
-    public function getTitulo()
+    // nome autor
+    public function getNomeautor()
     {
-        return $this->titulo;
+        return $this->nomeautor;
     }
 
-    public function setTitulo($ititulo)
+    public function setNomeautor($inomeautor)
     {
-        $this->titulo = $ititulo;
+        $this->nomeautor = $inomeautor;
     }
 
-    // categoria
-    public function getCategoria()
+    // sobrenome
+    public function getSobrenome()
     {
-        return $this->categoria;
+        return $this->sobrenome;
     }
 
-    public function setCategoria($icategoria)
+    public function setSobrenome($isobrenome)
     {
-        $this->categoria = $icategoria;
-    }
-    
-    // ISBN
-    public function getISBN()
-    {
-        return $this->ISBN;
+        $this->sobrenome = $isobrenome;
     }
 
-    public function setISBN($iISBN)
+    // email
+    public function getEmail()
     {
-        $this->ISBN = $iISBN;
+        return $this->email;
     }
 
-    // idioma
-    public function getIdioma()
+    public function setEmail($iemail)
     {
-        return $this->idioma;
+        $this->email = $iemail;
     }
 
-    public function setIdioma($iidioma)
+    // nasc
+    public function getNasc()
     {
-        $this->idioma = $iidioma;
+        return $this->nasc;
     }
 
-    // quantidade de páginas
-    public function getQtdepag()
+    public function setNasc($inasc)
     {
-        return $this->qtdepag;
-    }
-
-    public function setQtdepag($iqtdepag)
-    {
-        $this->qtdepag = $iqtdepag;
+        $this->nasc = $inasc;
     }
 
     // ===== parte 3 - métodos =====
@@ -92,12 +75,11 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Livo values (null,?,?,?,?,?)");
-            @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
-            @$sql -> bindParam(4, $this -> getIdioma(), PDO::PARAM_STR);
-            @$sql -> bindParam(5, $this -> getQtdepag(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getNomeautor(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getSobrenome(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getEmail(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getNasc(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
             if($sql -> execute() == 1)
             {
@@ -141,7 +123,7 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> query("select * from Livro order by cod_livro");
+            $sql = $this -> conn -> query("select * from autor order by cod_autor");
             $sql -> execute();
             return $sql -> fetchAll();
             $this -> conn = null;
