@@ -9,7 +9,7 @@
                 <br>
                 <div class="row">
                     <label for="">Título</label>
-                    <input name="txtTitulo" type="text" size="40" maxlength="40" required></p>
+                    <input name="txtTitulo" type="text" size="40" maxlength="40" required>
                 </div>
                 <div class="row">
                     <label for="">Categoria</label>
@@ -53,8 +53,8 @@
         extract($_POST, EXTR_OVERWRITE);
         if(isset($btnEnviar))
         {
-            include_once 'Autoria.php';
-            $aut = new Autoria();
+            include_once 'Livro.php';
+            $aut = new Livro();
             $aut -> setTitulo($txtTitulo);
             $aut -> setCategoria($txtCategoria);
             $aut -> setISBN($txtISBN);

@@ -15,8 +15,8 @@
     <section class="right">
       <table>
         <?php
-        include_once 'autoria.php';
-        $a = new Autoria();
+        include_once 'autor.php';
+        $a = new Autor();
         $aut_bd = $a -> listar();
         ?>
         

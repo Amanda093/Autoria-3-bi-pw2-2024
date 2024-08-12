@@ -6,8 +6,8 @@
         <section class="right">
           <table>
             <?php
-            include_once 'autoria.php';
-            $a = new Autoria();
+            include_once 'livro.php';
+            $a = new Livro();
             $aut_bd = $a -> listar();
             ?>
             
