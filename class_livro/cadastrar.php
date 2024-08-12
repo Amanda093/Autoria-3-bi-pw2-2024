@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    
+
     <body>
         <?php include_once '../layouts/navbar.php' ?>
     
@@ -32,7 +34,11 @@
                 </div>
                 <div class="row">
                     <label for="">ISBN</label>
-                    <input name="txtISBN" type="tel" maxlength="13" required>
+                    <input id="isbn" name="txtISBN" type="tel" maxlength="13" required>
+                    
+                    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+                    <script> $("#isbn").mask("000-00-000-0000-0"); </script> <!-- MASK FORMATTER -->
                 </div>
                 <div class="row">
                     <label for="">Idioma</label>
