@@ -104,15 +104,7 @@ class Livro
             {
                 return '
                 <script type="text/javascript">
-                $(document).ready(function(){
-                    Swal.fire ({
-                    title: "Registrado com sucesso!",
-                    
-                    imageUrl: "../img/peixinho.gif",
-                    imageWidth: 200,
-                    imageAlt: "Peixe colorido"
-                    })
-                  });
+                    sweetalert("Registrado com sucesso!");
                 </script>';
             }
             $this -> conn = null;
@@ -174,7 +166,7 @@ class Livro
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from produto where nome = ?"); // informei o ? (parametro)
+            $sql = $this -> conn -> prepare("select * from Livro where nome = ?"); // informei o ? (parametro)
             @$sql ->  bindParam(1, $this -> getNome(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
             // @$sql -> bindParam(1, $this -> getNome() . "%", PDO::PARAM_STR);
             $sql -> execute();
@@ -185,20 +177,41 @@ class Livro
         }
     }
 
-    function exclusao() 
+    function exclusao() // TODO Fazer o excluir funcionar
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("delete * from produto where id = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getId(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
+            $sql = $this -> conn -> prepare("delete * from Livro where Cod_Livro = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
-                return "Excluido com sucesso! ";
+                return '
+                <script type="text/javascript">
+                    sweetalert("Excluido com sucesso!");
+                </script>
+                ';
             } 
             else {
                 return "Erro na exclusão! "; 
             }
         } catch (PDOException $exc) {
-            echo "Erro ao excluir. " . $exc -> getMessage();
+            echo '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao excluir",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 
@@ -212,9 +225,46 @@ class Livro
             $this -> conn = null;
         } 
         catch (PDOException $exc) {
-            echo "Erro ao executar consulta. " . $exc -> getMessage();
+            echo '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao listar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 } // encerramento de classe Autoria
 
 ?>
+
+<script type="text/javascript">
+    function sweetalert(titulo, mensagemErro = '') {
+        $(document).ready(function(){
+                Swal.fire ({
+                title: titulo,
+                footer: mensagemErro,
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+    }
+</script>
