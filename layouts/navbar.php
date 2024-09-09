@@ -15,10 +15,10 @@
           <button onclick = "location.href = ''">Alterar</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Excluir</button>
+          <button onclick = "location.href = '../class_livro/excluir.php'">Excluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Pesquisar</button>
+          <button onclick = "location.href = '../class_livro/consultar.php'">Pesquisar</button>
         </li>
       </ul>
       
@@ -34,10 +34,10 @@
           <button onclick = "location.href = ''">Alterar</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Excluir</button>
+          <button onclick = "location.href = '../class_autoria/excluir.php'">Excluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Pesquisar</button>
+          <button onclick = "location.href = '../class_autoria/consultar.php'">Pesquisar</button>
         </li>
       </ul>
         
@@ -53,10 +53,10 @@
           <button onclick = "location.href = ''">Alterar</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Excluir</button>
+          <button onclick = "location.href = '../class_autor/excluir.php'">Excluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Pesquisar</button>
+          <button onclick = "location.href = '../class_autor/consultar.php'">Pesquisar</button>
         </li>
       </ul>
     </div>

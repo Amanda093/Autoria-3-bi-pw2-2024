@@ -6,38 +6,29 @@
         <link rel="stylesheet" href="../css/style.css" />
         
         <link rel="icon" href="../img/autoria.png" />
-        <title>Consultar</title>
+        <title>Excluir</title>
     </head>
     <body>
         <?php include_once '../layouts/navbar.php' ?>
     
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Consultar Livros Cadastrados </h2>
+                <h2 class="title"> Exclusão de Livros Cadastrados </h2>
                 <br>
                 <div class="row">
-                    <label for=""> Informe o <b>Nome</b> do livro desejado </label> 
-                    <input name="txtNome" type="text" size="40" maxlength="40" required>
+                    <label for=""> Informe o <b>Código</b> do livro desejado </label> 
+                    <input name="txtCod" type="text" size="40" maxlength="40" required>
                 </div>
 
                 <div class="row">
                     <label for=""> Resultado </label>
                     <?php
                         extract($_POST, EXTR_OVERWRITE);
-                        if(isset($btnEnviar))
-                        {
-                            include_once 'Livro.php';
+                        if(isset($btnEnviar)) {
+                            include_once 'Produto.php';
                             $p = new Produto();
-                            $p -> setNome($txtnome . '%'); // o . '%' serve para uma busca aproximada da determinada letra informada
-                            $pro_bd = $p -> consultar();
-                        
-                            foreach ($pro_bd as $pro_mostrar) {
-                                ?> <br>
-                                <b> <?php echo "ID: " . $pro_mostrar[0]; ?> </b>
-                                <b> <?php echo "Nome: " . $pro_mostrar[1]; ?> </b>
-                                <b> <?php echo "Estoque: " . $pro_mostrar[2]; ?> </b>
-                                <?php 
-                            }
+                            $p -> setId($txtid);
+                            echo "<h3>" . $p -> exclusao() . "</h3>";
                         }
                     ?>
                 </div>
