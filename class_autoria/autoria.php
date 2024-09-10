@@ -60,28 +60,21 @@ class Autoria
     // ===== parte 3 - métodos =====
 
     function salvar()
-{
+    {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Autoria values (?,?,?,?)");
-            @$sql -> bindParam(1, $this -> getCod_autor(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getCod_livro(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getDatalancamento(), PDO::PARAM_STR);
-            @$sql -> bindParam(4, $this -> getEditora(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Livro values (null,?,?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getIdioma(), PDO::PARAM_STR);
+            @$sql -> bindParam(5, $this -> getQtdepag(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
-            if($sql -> execute() == 1)  
+            if($sql -> execute() == 1)
             {
                 return '
                 <script type="text/javascript">
-                $(document).ready(function(){
-                    Swal.fire ({
-                    title: "Registrado com sucesso!",
-                    
-                    imageUrl: "../img/peixinho.gif",
-                    imageWidth: 200,
-                    imageAlt: "Peixe colorido"
-                    })
-                  });
+                    sweetalert("Registrado com sucesso!");
                 </script>';
             }
             $this -> conn = null;
@@ -93,12 +86,15 @@ class Autoria
                 title: "Houve um erro ao registrar!",
                 footer: "'. $exc -> getMessage() . '",
                 
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
                 imageUrl: "../img/peixinho.gif",
                 imageWidth: 200,
                 imageAlt: "Peixe colorido",
 
                 background: "#100d16",
-            })
+                })
               });
             </script>';
         }
@@ -140,14 +136,31 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from produto where nome = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getNome(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
-            // @$sql -> bindParam(1, $this -> getNome() . "%", PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("select * from Livro where Cod_Livro = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
+            // @$sql -> bindParam(1, $this -> getCod_Livro() . "%", PDO::PARAM_STR);
             $sql -> execute();
             return $sql -> fetchAll();
             $this -> conn = null;
         } catch (PDOException $exc) {
-            echo "Erro ao executar a consulta. " . $exc -> getMessage();
+            echo  '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao consultar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 
@@ -155,16 +168,37 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("delete * from produto where id = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getId(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
+            $sql = $this -> conn -> prepare("delete from Livro where Cod_Livro = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
-                return "Excluido com sucesso! ";
+                return '
+                <script type="text/javascript">
+                    sweetalert("Excluido com sucesso!");
+                </script>
+                ';
             } 
             else {
                 return "Erro na exclusão! "; 
             }
         } catch (PDOException $exc) {
-            echo "Erro ao excluir. " . $exc -> getMessage();
+            echo '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao excluir",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
     
@@ -200,3 +234,23 @@ class Autoria
 } // encerramento de classe Autoria
 
 ?>
+
+<script type="text/javascript">
+    function sweetalert(titulo, mensagemErro = '') {
+        $(document).ready(function(){
+                Swal.fire ({
+                title: titulo,
+                footer: mensagemErro,
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+    }
+</script>
