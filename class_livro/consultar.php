@@ -6,46 +6,59 @@
         <link rel="stylesheet" href="../css/style.css" />
         
         <link rel="icon" href="../img/autoria.png" />
-        <title>Consultar</title>
+        <title>Excluir</title>
     </head>
     <body>
         <?php include_once '../layouts/navbar.php' ?>
     
+        <?php
+        include_once 'livro.php';
+        $a = new Livro();
+        $aut_bd = $a -> listar();
+        ?>
+
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Consultar Livros Cadastrados </h2>
+                <h2 class="title"> Pesquisa de Livros Cadastrados </h2>
                 <br>
                 <div class="row">
-                    <label for=""> Informe o <b>Nome</b> do livro desejado </label> 
-                    <input name="txtNome" type="text" size="40" maxlength="40" required>
-                </div>
-
-                <div class="row">
-                    <label for=""> Resultado </label>
-                    <?php
-                        extract($_POST, EXTR_OVERWRITE);
-                        if(isset($btnEnviar))
-                        {
-                            include_once 'Livro.php';
-                            $p = new Produto();
-                            $p -> setNome($txtnome . '%'); // o . '%' serve para uma busca aproximada da determinada letra informada
-                            $pro_bd = $p -> consultar();
-                        
-                            foreach ($pro_bd as $pro_mostrar) {
-                                ?> <br>
-                                <b> <?php echo "ID: " . $pro_mostrar[0]; ?> </b>
-                                <b> <?php echo "Nome: " . $pro_mostrar[1]; ?> </b>
-                                <b> <?php echo "Estoque: " . $pro_mostrar[2]; ?> </b>
-                                <?php 
-                            }
-                        }
-                    ?>
+                    <label for=""> Selecione o código para pesquisar </label>
+                    <select name="codLivro" size="1">
+                        <?php foreach ($aut_bd as $aut_mostrar) { // TODO mostra o numero de qm foi excluido
+                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ' - ' . $aut_mostrar[1] .'</option>';
+                        } ?>
+                    </select>
                 </div>
                 <div class="row">
-                    <button name="btnEnviar" type="submit">Cadastrar</button>
-                    <button name="btnLimpar" type="reset">Limpar</button>
+                    <button name="btnEnviar" type="submit">Pesquisar</button>
                 </div>
             </form>
-        </section>
+
+                <?php
+                    extract($_POST, EXTR_OVERWRITE);
+                    if(isset($btnEnviar)) {
+                        $a -> setCod_livro($codLivro); 
+                        $aut_bd = $a -> consultar();
+                        foreach ($aut_bd as $aut_mostrar) {
+                            ?>
+                            <table>
+                                <br><br>
+                                <tr>
+                                    <th> Código do livro </th> <th> Título </th> <th> Categoria </th> 
+                                    <th> ISBN </th> <th> Idioma </th> <th> Quantidade de páginas </th> 
+                                </tr>
+                                <tr> <th> <?php echo $aut_mostrar[0]; ?> </th>  </b> 
+                                <td> <?php echo $aut_mostrar[1]; ?> </td>
+                                <td> <?php echo $aut_mostrar[2]; ?> </td>
+                                <td> <?php echo $aut_mostrar[3]; ?> </td>
+                                <td> <?php echo $aut_mostrar[4]; ?> </td>
+                                <td> <?php echo $aut_mostrar[5]; ?> </td>
+                                </table>
+                            <?php
+                        }
+                    }
+                ?>
+            
+    </section>
     </body>
 </html>

@@ -166,22 +166,39 @@ class Livro
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from Livro where nome = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getNome(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
-            // @$sql -> bindParam(1, $this -> getNome() . "%", PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("select * from Livro where Cod_Livro = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
+            // @$sql -> bindParam(1, $this -> getCod_Livro() . "%", PDO::PARAM_STR);
             $sql -> execute();
             return $sql -> fetchAll();
             $this -> conn = null;
         } catch (PDOException $exc) {
-            echo "Erro ao executar a consulta. " . $exc -> getMessage();
+            echo  '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao consultar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 
-    function exclusao() // TODO Fazer o excluir funcionar
+    function exclusao() 
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("delete * from Livro where Cod_Livro = ?"); // informei o ? (parametro)
+            $sql = $this -> conn -> prepare("delete from Livro where Cod_Livro = ?"); // informei o ? (parametro)
             @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
                 return '
