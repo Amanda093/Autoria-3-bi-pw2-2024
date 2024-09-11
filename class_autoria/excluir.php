@@ -12,20 +12,20 @@
         <?php include_once '../layouts/navbar.php' ?>
     
         <?php
-        include_once 'livro.php';
+        include_once 'autoria.php';
         $a = new Autoria();
         $aut_bd = $a -> listar();
         ?>
 
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Exclusão de Livros Cadastrados </h2>
+                <h2 class="title"> Exclusão de Autorias Cadastradas </h2>
                 <br>
                 <div class="row">
                     <label for=""> Selecione o código para excluir </label>
                     <select name="codAutoria" size="1">
-                        <?php foreach ($aut_bd as $aut_mostrar) { // TODO ainda mostra o numero de qm foi excluido
-                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ',' . $aut_mostrar[1] . ' - ' . $aut_mostrar[2] .'</option>';
+                        <?php foreach ($aut_bd as $aut_mostrar) {
+                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ', ' . $aut_mostrar[1] . ' - ' . $aut_mostrar[2] .'</option>';
                         } ?>
                     </select>
                 </div>
@@ -34,7 +34,7 @@
                     <?php
                         extract($_POST, EXTR_OVERWRITE);
                         if(isset($btnEnviar)) {
-                            $a -> setCod_livro($codLivro);
+                            $a -> setCod_Autor($codAutoria);
                             echo "<h3>" . $a -> exclusao() . "</h3>";
                         }
                     ?>

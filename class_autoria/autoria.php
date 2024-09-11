@@ -63,7 +63,7 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Livro values (null,?,?,?,?,?)");
+            $sql = $this -> conn -> prepare("insert into Autoria values (null,?,?,?,?,?)");
             @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
             @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
             @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
@@ -136,8 +136,8 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from Livro where Cod_Livro = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
+            $sql = $this -> conn -> prepare("select * from Autoria where Cod_Autor = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_Autor(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
             // @$sql -> bindParam(1, $this -> getCod_Livro() . "%", PDO::PARAM_STR);
             $sql -> execute();
             return $sql -> fetchAll();
@@ -168,8 +168,8 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("delete from Livro where Cod_Livro = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
+            $sql = $this -> conn -> prepare("delete from Autoria where Cod_Autor = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_Autor(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
                 return '
                 <script type="text/javascript">

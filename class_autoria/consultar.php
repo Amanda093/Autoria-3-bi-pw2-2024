@@ -6,46 +6,57 @@
         <link rel="stylesheet" href="../css/style.css" />
         
         <link rel="icon" href="../img/autoria.png" />
-        <title>Consultar</title>
+        <title>Excluir</title>
     </head>
     <body>
         <?php include_once '../layouts/navbar.php' ?>
     
+        <?php
+        include_once 'autoria.php';
+        $a = new Autoria();
+        $aut_bd = $a -> listar();
+        ?>
+
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Consultar Livros Cadastrados </h2>
+                <h2 class="title"> Pesquisa de Autorias Cadastradas </h2>
                 <br>
                 <div class="row">
-                    <label for=""> Informe o <b>Nome</b> do livro desejado </label> 
-                    <input name="txtNome" type="text" size="40" maxlength="40" required>
-                </div>
-
-                <div class="row">
-                    <label for=""> Resultado </label>
-                    <?php
-                        extract($_POST, EXTR_OVERWRITE);
-                        if(isset($btnEnviar))
-                        {
-                            include_once 'Livro.php';
-                            $p = new Produto();
-                            $p -> setNome($txtnome . '%'); // o . '%' serve para uma busca aproximada da determinada letra informada
-                            $pro_bd = $p -> consultar();
-                        
-                            foreach ($pro_bd as $pro_mostrar) {
-                                ?> <br>
-                                <b> <?php echo "ID: " . $pro_mostrar[0]; ?> </b>
-                                <b> <?php echo "Nome: " . $pro_mostrar[1]; ?> </b>
-                                <b> <?php echo "Estoque: " . $pro_mostrar[2]; ?> </b>
-                                <?php 
-                            }
-                        }
-                    ?>
+                    <label for=""> Selecione o código para pesquisar </label>
+                    <select name="codAutoria" size="1">
+                        <?php foreach ($aut_bd as $aut_mostrar) {
+                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ', ' . $aut_mostrar[1] . ' - ' . $aut_mostrar[2] .'</option>';
+                        } ?>
+                    </select>
                 </div>
                 <div class="row">
-                    <button name="btnEnviar" type="submit">Cadastrar</button>
-                    <button name="btnLimpar" type="reset">Limpar</button>
+                    <button name="btnEnviar" type="submit">Pesquisar</button>
                 </div>
             </form>
-        </section>
+
+                <?php
+                    extract($_POST, EXTR_OVERWRITE);
+                    if(isset($btnEnviar)) {
+                        $a -> setCod_Autor($codAutoria); 
+                        $aut_bd = $a -> consultar();
+                        foreach ($aut_bd as $aut_mostrar) {
+                            ?>
+                            <table>
+                                <br><br>
+                                <tr>
+                                    <th> Código do autor </th> <th> Código do livro </th> 
+                                    <th> Data de Lançamento </th> <th> Editora </th>
+                                </tr>
+                                <tr> <th> <?php echo $aut_mostrar[0]; ?> </th>  </b> 
+                                <td> <?php echo $aut_mostrar[1]; ?> </td>
+                                <td> <?php echo $aut_mostrar[2]; ?> </td>
+                                <td> <?php echo $aut_mostrar[3]; ?> </td>
+                                </table>
+                            <?php
+                        }
+                    }
+                ?>
+            
+    </section>
     </body>
 </html>
