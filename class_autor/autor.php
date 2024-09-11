@@ -176,12 +176,12 @@ class Autor
         }
     }
 
-    function exclusao() 
+    function exclusao()  // NAO FUNCIONA O SWEETALERT
     {
         try {
             $this -> conn = new Conectar();
             $sql = $this -> conn -> prepare("delete from Autor where Cod_Autor = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
+            @$sql ->  bindParam(1, $this -> getCod_Autor(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
                 return '
                 <script type="text/javascript">

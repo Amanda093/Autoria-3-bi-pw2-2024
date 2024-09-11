@@ -34,7 +34,7 @@
                     <?php
                         extract($_POST, EXTR_OVERWRITE);
                         if(isset($btnEnviar)) {
-                            $a -> setCod_livro($codAutor);
+                            $a -> setCod_Autor($codAutor);
                             echo "<h3>" . $a -> exclusao() . "</h3>";
                         }
                     ?>
