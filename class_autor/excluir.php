@@ -11,30 +11,36 @@
     <body>
         <?php include_once '../layouts/navbar.php' ?>
     
+        <?php
+        include_once 'autor.php';
+        $a = new Autor();
+        $aut_bd = $a -> listar();
+        ?>
+
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Exclusão de Livros Cadastrados </h2>
+                <h2 class="title"> Exclusão de Autores Cadastrados </h2>
                 <br>
                 <div class="row">
-                    <label for=""> Informe o <b>Código</b> do livro desejado </label> 
-                    <input name="txtCod" type="text" size="40" maxlength="40" required>
+                    <label for=""> Selecione o código para excluir </label>
+                    <select name="codAutor" size="1">
+                        <?php foreach ($aut_bd as $aut_mostrar) { // TODO ainda mostra o numero de qm foi excluido
+                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ' - ' . $aut_mostrar[1] .'</option>';
+                        } ?>
+                    </select>
                 </div>
 
                 <div class="row">
-                    <label for=""> Resultado </label>
                     <?php
                         extract($_POST, EXTR_OVERWRITE);
                         if(isset($btnEnviar)) {
-                            include_once 'Produto.php';
-                            $p = new Produto();
-                            $p -> setId($txtid);
-                            echo "<h3>" . $p -> exclusao() . "</h3>";
+                            $a -> setCod_livro($codAutor);
+                            echo "<h3>" . $a -> exclusao() . "</h3>";
                         }
                     ?>
                 </div>
                 <div class="row">
-                    <button name="btnEnviar" type="submit">Cadastrar</button>
-                    <button name="btnLimpar" type="reset">Limpar</button>
+                    <button name="btnEnviar" type="submit">Excluir</button>
                 </div>
             </form>
         </section>

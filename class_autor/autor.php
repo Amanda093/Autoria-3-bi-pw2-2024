@@ -75,25 +75,18 @@ class Autor
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?)");
-            @$sql -> bindParam(1, $this -> getNomeautor(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getSobrenome(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getEmail(), PDO::PARAM_STR);
-            @$sql -> bindParam(4, $this -> getNasc(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
+            @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
+            @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getIdioma(), PDO::PARAM_STR);
+            @$sql -> bindParam(5, $this -> getQtdepag(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
             if($sql -> execute() == 1)
             {
                 return '
                 <script type="text/javascript">
-                $(document).ready(function(){
-                    Swal.fire ({
-                    title: "Registrado com sucesso!",
-                    
-                    imageUrl: "../img/peixinho.gif",
-                    imageWidth: 200,
-                    imageAlt: "Peixe colorido"
-                    })
-                  });
+                    sweetalert("Registrado com sucesso!");
                 </script>';
             }
             $this -> conn = null;
@@ -155,14 +148,31 @@ class Autor
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from produto where nome = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getNome(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
-            // @$sql -> bindParam(1, $this -> getNome() . "%", PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("select * from Autor where Cod_Autor = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_Autor(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
+            // @$sql -> bindParam(1, $this -> getCod_Autor() . "%", PDO::PARAM_STR);
             $sql -> execute();
             return $sql -> fetchAll();
             $this -> conn = null;
         } catch (PDOException $exc) {
-            echo "Erro ao executar a consulta. " . $exc -> getMessage();
+            echo  '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao consultar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 
@@ -170,16 +180,37 @@ class Autor
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("delete * from produto where id = ?"); // informei o ? (parametro)
-            @$sql ->  bindParam(1, $this -> getId(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
+            $sql = $this -> conn -> prepare("delete from Autor where Cod_Autor = ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_livro(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
             if($sql -> execute() == 1) {
-                return "Excluido com sucesso! ";
+                return '
+                <script type="text/javascript">
+                    sweetalert("Excluido com sucesso!");
+                </script>
+                ';
             } 
             else {
                 return "Erro na exclusão! "; 
             }
         } catch (PDOException $exc) {
-            echo "Erro ao excluir. " . $exc -> getMessage();
+            echo '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao excluir",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
     
@@ -187,15 +218,52 @@ class Autor
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> query("select * from autor order by cod_autor");
+            $sql = $this -> conn -> query("select * from Autor order by Cod_Autor");
             $sql -> execute();
             return $sql -> fetchAll();
             $this -> conn = null;
         } 
         catch (PDOException $exc) {
-            echo "Erro ao executar consulta. " . $exc -> getMessage();
+            echo '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao listar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
         }
     }
 } // encerramento de classe Autoria
 
 ?>
+
+<script type="text/javascript">
+    function sweetalert(titulo, mensagemErro = '') {
+        $(document).ready(function(){
+                Swal.fire ({
+                title: titulo,
+                footer: mensagemErro,
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+    }
+</script>
