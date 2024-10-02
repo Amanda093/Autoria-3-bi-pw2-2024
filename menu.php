@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <link rel="icon" href="img/autoria.png" />
-    <title>Home Page</title>
+    <title>Inicial</title>
   </head>
   <body>
-    <header>
+  <header>
       <div class="container container_header">
         <!-- opções header -->
         <div class="left">
@@ -23,7 +23,7 @@
               <button onclick = "location.href = 'class_livro/cadastrar.php'">Incluir</button>
             </li>
             <li>
-              <button onclick = "location.href = ''">Alterar</button>
+              <button onclick = "location.href = 'class_livro/alterar1.php'">Alterar</button>
             </li>
             <li>
               <button onclick = "location.href = 'class_livro/excluir.php'">Excluir</button>

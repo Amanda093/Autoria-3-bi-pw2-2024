@@ -2,7 +2,7 @@
   <div class="container container_header">
     <!-- opções header -->
     <div class="left">
-      <button onclick = "location.href = '../menu.html'">Principal</button>
+      <button onclick = "location.href = '../menu.php'">Principal</button>
       <h2>Livro</h2>
       <ul>
         <li>
@@ -12,7 +12,7 @@
           <button onclick = "location.href = '../class_livro/cadastrar.php'">Incluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Alterar</button>
+          <button onclick = "location.href = '../class_livro/alterar1.php'">Alterar</button>
         </li>
         <li>
           <button onclick = "location.href = '../class_livro/excluir.php'">Excluir</button>

@@ -46,7 +46,6 @@ header {
     display: flex; 
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 .container_header {
     padding-block: 2.5rem;
