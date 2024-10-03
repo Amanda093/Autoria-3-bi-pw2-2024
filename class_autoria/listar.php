@@ -21,7 +21,7 @@
         ?>
         
         <tr>
-            <th> Código do autor </th> <th> Código do livro </th> 
+        <th> Código do autor </th><th> Código do livro </th> 
             <th> Data de Lançamento </th> <th> Editora </th>
         </tr>
 

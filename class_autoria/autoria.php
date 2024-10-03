@@ -69,9 +69,11 @@ class Autoria
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Autoria values (null,null,?,?)");
-            @$sql -> bindParam(1, $this -> getDatalancamento(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getEditora(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Autoria values (?,?,?,?)");
+            @$sql -> bindParam(1, $this -> getCod_autor(), PDO::PARAM_INT);
+            @$sql -> bindParam(2, $this -> getCod_livro(), PDO::PARAM_INT);
+            @$sql -> bindParam(3, $this -> getDatalancamento(), PDO::PARAM_STR);
+            @$sql -> bindParam(4, $this -> getEditora(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
             if($sql -> execute() == 1)
             {
@@ -102,14 +104,45 @@ class Autoria
             </script>';
         }
     }
-
-    function alterar() 
+    function alterar1() 
     {
         try {
             $this -> conn = new Conectar();
-                $sql = $this -> conn -> prepare("update Autoria set DataLancamento = ?, Categoria = ? where Cod_Livro = ? and Cod_Autor = ?");
-                @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
-                @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("select * from Autoria where Cod_autor like ? and Cod_livro like ?"); // informei o ? (parametro)
+            @$sql ->  bindParam(1, $this -> getCod_Autor(), PDO::PARAM_INT); // inclui esta linha para definir o parametro
+            @$sql ->  bindParam(2, $this -> getCod_livro(), PDO::PARAM_INT);
+            // @$sql -> bindParam(1, $this -> getCod_Livro() . "%", PDO::PARAM_STR);
+            $sql -> execute();
+            return $sql -> fetchAll();
+            $this -> conn = null;
+        } catch (PDOException $exc) {
+            echo  '
+            <script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire ({
+                title: "Houve um erro ao consultar",
+                footer: "'. $exc -> getMessage() . '",
+                
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+
+                imageUrl: "../img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+
+                background: "#100d16",
+                })
+              });
+            </script>';
+        }
+    }
+    function alterar2() 
+    {
+        try {
+            $this -> conn = new Conectar();
+                $sql = $this -> conn -> prepare("update Autoria set DataLancamento = ?, Editora = ? where Cod_Livro = ? and Cod_Autor = ?");
+                @$sql -> bindParam(1, $this -> getDatalancamento(), PDO::PARAM_STR);
+                @$sql -> bindParam(2, $this -> getEditora(), PDO::PARAM_STR);
                 @$sql -> bindParam(3, $this -> getCod_livro(), PDO::PARAM_INT); // FK
                 @$sql -> bindParam(4, $this -> getCod_autor(), PDO::PARAM_INT); // FK
     

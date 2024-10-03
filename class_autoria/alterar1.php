@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/style.css" />
-        <style> .right { flex-direction: column; } </style>
 
         <link rel="icon" href="../img/autoria.png" />
         <title>Alterar</title>
@@ -23,10 +22,18 @@
                 <h2 class="title"> Alteração de Autorias Cadastradas </h2>
                 <br>
                 <div class="row">
-                    <label for=""> Selecione o código para alterar </label>
+                    <label for=""> Selecione o código do autor para alterar </label>
+                    <select name="txtCodAutor" size="1">
+                        <?php foreach ($aut_bd as $aut_mostrar) { 
+                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] .'</option>';
+                        } ?>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for=""> Selecione o código do livro para alterar </label>
                     <select name="txtCodLivro" size="1">
-                        <?php foreach ($aut_bd as $aut_mostrar) { // TODO mostra o numero de qm foi excluido
-                            echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ' - ' . $aut_mostrar[1] .'</option>';
+                        <?php foreach ($aut_bd as $aut_mostrar) { 
+                            echo '<option value = "' . $aut_mostrar[1] . '">' . $aut_mostrar[1] .'</option>';
                         } ?>
                     </select>
                 </div>

@@ -30,7 +30,7 @@
                     <?php
                         foreach ($autor_bd as $autor_mostrar) {
                     ?>
-                    <option value="<?php echo $autor_mostrar[0]; ?> ">
+                    <option value="<?php echo $autor_mostrar[0]; ?>">
                         <?php echo $autor_mostrar[0] . " - " . $autor_mostrar[1]; ?> 
                     </option>
                     <?php
@@ -44,7 +44,7 @@
                     <?php
                         foreach ($livro_bd as $livro_mostrar) {
                     ?>
-                    <option value="<?php echo $livro_mostrar[0]; ?> ">
+                    <option value="<?php echo $livro_mostrar[0]; ?>">
                         <?php echo $livro_mostrar[0] . " - " . $livro_mostrar[1]; ?> 
                     </option>
                     <?php
