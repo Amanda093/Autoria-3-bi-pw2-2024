@@ -134,7 +134,7 @@ class Livro
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("update Livro set titulo = ?, categoria = ?, ISBN = ?, idioma = ?, qtdepag  = ? where Cod_Livro = ?");
+            $sql = $this -> conn -> prepare("update Livro set Titulo = ?, Categoria = ?, ISBN = ?, Idioma = ?, QtdePag  = ? where Cod_Livro = ?");
             @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
             @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
             @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);

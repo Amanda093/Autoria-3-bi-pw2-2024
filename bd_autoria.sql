@@ -84,7 +84,7 @@ INSERT INTO `autoria` (`Cod_Autor`, `Cod_Livro`, `DataLancamento`, `Editora`) VA
 
 CREATE TABLE `livro` (
   `Cod_Livro` int(11) NOT NULL,
-  `Título` varchar(100) NOT NULL,
+  `Titulo` varchar(100) NOT NULL,
   `Categoria` varchar(50) NOT NULL,
   `ISBN` varchar(20) NOT NULL,
   `Idioma` varchar(50) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `livro` (
 -- Extraindo dados da tabela `livro`
 --
 
-INSERT INTO `livro` (`Cod_Livro`, `Título`, `Categoria`, `ISBN`, `Idioma`, `QtdePag`) VALUES
+INSERT INTO `livro` (`Cod_Livro`, `Titulo`, `Categoria`, `ISBN`, `Idioma`, `QtdePag`) VALUES
 (1, 'O Senhor dos Anéis ', 'Fantasia', '978-0-618-61515-7', 'Português', 1178),
 (2, 'Orgulho e Preconceito', 'Romance', '978-3-16-148410-0', 'Francês', 432),
 (3, 'Dom Casmurro ', 'Romance', '978-85-254-2781-4', 'Português', 256),

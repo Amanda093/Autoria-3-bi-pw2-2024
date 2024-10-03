@@ -154,7 +154,12 @@ button {
         box-shadow: 5px 10px 20px -10px #00ff55a9;
     }
 }
-
+.input_disabled {
+    filter: contrast(0.3) grayscale(20%) brightness(1.5);
+    user-select: none;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 
   
   

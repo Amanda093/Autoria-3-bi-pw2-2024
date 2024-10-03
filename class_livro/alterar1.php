@@ -24,7 +24,7 @@
                 <br>
                 <div class="row">
                     <label for=""> Selecione o código para alterar </label>
-                    <select name="codLivro" size="1">
+                    <select name="txtCodLivro" size="1">
                         <?php foreach ($aut_bd as $aut_mostrar) { // TODO mostra o numero de qm foi excluido
                             echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ' - ' . $aut_mostrar[1] .'</option>';
                         } ?>
