@@ -1,21 +1,3 @@
-<?php
-$txtCodLivro = $_POST['txtCodLivro'];
-include_once 'Livro.php';
-$a = new Livro();
-$a->setCod_livro($txtCodLivro);
-$aut_bd = $a -> consultar(); // chamada de método com retorno - o $p é o parâmetro enviado
-
-extract($_POST, EXTR_OVERWRITE);
-if(isset($Enviar)) {
-    $a->setTitulo($txtTitulo);
-    $a->setCategoria($txtCategoria);
-    $a->setISBN($txtISBN);
-    $a->setIdioma($txtIdioma);
-    $a->setQtdePag($txtQtdePag);
-    $a->setCod_livro($txtCodLivro);
-    $a->alterar();
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -30,7 +12,25 @@ if(isset($Enviar)) {
     <body>
         <?php include_once '../layouts/navbar.php' ?>
 
-        
+        <?php
+        $txtCodLivro = $_POST['txtCodLivro'];
+        include_once 'Livro.php';
+        $a = new Livro();
+        $a->setCod_livro($txtCodLivro);
+        $aut_bd = $a -> consultar(); // chamada de método com retorno - o $p é o parâmetro enviado
+
+        extract($_POST, EXTR_OVERWRITE);
+        if(isset($Enviar)) {
+            $a->setTitulo($txtTitulo);
+            $a->setCategoria($txtCategoria);
+            $a->setISBN($txtISBN);
+            $a->setIdioma($txtIdioma);
+            $a->setQtdePag($txtQtdePag);
+            $a->setCod_livro($txtCodLivro);
+            $a->alterar();
+            header("location:alterar1.php");
+        }
+        ?>
 
         <section class="right">
                 <form name="cliente" method="POST" action=""> 
@@ -67,6 +67,7 @@ if(isset($Enviar)) {
                     </div>
                 </form>
                 <?php } 
+                
             ?>            
     </section>
     </body>
