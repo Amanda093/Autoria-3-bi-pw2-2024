@@ -31,7 +31,7 @@
           <button onclick = "location.href = '../class_autoria/cadastrar.php'">Incluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Alterar</button>
+          <button onclick = "location.href = '../class_autoria/alterar1.php'">Alterar</button>
         </li>
         <li>
           <button onclick = "location.href = '../class_autoria/excluir.php'">Excluir</button>
@@ -50,7 +50,7 @@
           <button onclick = "location.href = '../class_autor/cadastrar.php'">Incluir</button>
         </li>
         <li>
-          <button onclick = "location.href = ''">Alterar</button>
+          <button onclick = "location.href = '../class_autor/alterar1.php'">Alterar</button>
         </li>
         <li>
           <button onclick = "location.href = '../class_autor/excluir.php'">Excluir</button>

@@ -1,3 +1,9 @@
+<head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+</head>
+
 <?php
 
 include_once '../conectar.php';
@@ -75,12 +81,11 @@ class Autor
     {
         try {
             $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?,?)");
-            @$sql -> bindParam(1, $this -> getTitulo(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getCategoria(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getISBN(), PDO::PARAM_STR);
-            @$sql -> bindParam(4, $this -> getIdioma(), PDO::PARAM_STR);
-            @$sql -> bindParam(5, $this -> getQtdepag(), PDO::PARAM_STR);
+            $sql = $this -> conn -> prepare("insert into Autor values (null,?,?,?,?)");
+            @$sql->bindParam(1, $this->getNomeAutor(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getSobrenome(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getEmail(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getNasc(), PDO::PARAM_STR);
             // PDO::PARAM_STR representa o tipo de dados SQL CHAR, VARCHAR ou outra String. 
             if($sql -> execute() == 1)
             {
@@ -112,37 +117,24 @@ class Autor
         }
     }
 
-    /*
-    function alterar() 
+    function alterar()
     {
         try {
-            $this ->  conn = new Conectar();
-            $sql = $this -> conn -> prepare("select * from produto where id = ?"); // informei o ? (parametro)
-            @$sql -> bindParam(1, $this -> getId(), PDO::PARAM_STR); // inclui esta linha para definir o parametro
-            $sql -> execute();
-            return $sql -> fetchAll();
-            $this -> conn = null;
-        } catch (PDOException $exc) {
-            echo "Erro ao alterar. " . $exc -> getMessage();
-        }
-    }
-    function alterar2() 
-    {
-        try {
-            $this -> conn = new Conectar();
-            $sql = $this -> conn -> prepare("update produto set nome = ?, estoque = ? where id = ?");
-            @$sql -> bindParam(1, $this -> getNome(), PDO::PARAM_STR);
-            @$sql -> bindParam(2, $this -> getEstoque(), PDO::PARAM_STR);
-            @$sql -> bindParam(3, $this -> getId(), PDO::PARAM_STR);
-            if($sql -> execute() == 1) {
-                return "Registro alterado com sucesso!";
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("update Autor set NomeAutor = ?, Sobrenome = ?, Email = ?, Nasc = ? where Cod_autor = ?");
+            @$sql->bindParam(1, $this->getNomeAutor(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getSobrenome(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getEmail(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getNasc(), PDO::PARAM_STR);
+            @$sql->bindParam(5, $this->getCod_autor(), PDO::PARAM_INT);
+            if ($sql->execute() == 1) {
+                return 1;
             }
-            $this -> conn = null;
-        } catch (PDOExceotuib $exc) {
-            echo "Erro ao salvar o registro. " . $exc -> getMessage();
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao alterar. " . $exc->getMessage();
         }
     }
-    */
 
     function consultar() 
     {

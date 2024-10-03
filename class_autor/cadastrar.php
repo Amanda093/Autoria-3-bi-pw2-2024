@@ -13,7 +13,7 @@
     
         <section class="right">
             <form name="cliente" method="POST" action="">
-                <h2 class="title"> Dados do Autor </h2>
+                <h2 class="title"> Cadastrar Autor </h2>
                 <br>
                 <div class="row">
                     <label for="">Nome do Autor</label>
@@ -42,12 +42,12 @@
             if(isset($btnEnviar))
             {
                 include_once 'Autor.php';
-                $aut = new Autor();
-                $aut -> setNomeautor($txtNome);
-                $aut -> setSobrenome($txtSobrenome);
-                $aut -> setEmail($txtEmail);
-                $aut -> setNasc($txtDataNasc);
-                echo $aut -> salvar();
+                $a = new Autor();
+                $a -> setNomeautor($txtNome);
+                $a -> setSobrenome($txtSobrenome);
+                $a -> setEmail($txtEmail);
+                $a -> setNasc($txtDataNasc);
+                echo $a -> salvar();
             }
             ?>
         </section>

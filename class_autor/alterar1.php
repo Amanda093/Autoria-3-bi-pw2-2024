@@ -12,19 +12,19 @@
         <?php include_once '../layouts/navbar.php' ?>
 
         <?php
-        include_once 'livro.php';
-        $a = new Livro();
+        include_once 'autor.php';
+        $a = new Autor();
         $aut_bd = $a -> listar();
         ?>
         
         <section class="right">
             <form name="cliente" method="POST" action="alterar2.php">
-                <h2 class="title"> Alteração de Livros Cadastrados </h2>
+                <h2 class="title"> Alteração de Autores Cadastrados </h2>
                 <br>
                 <div class="row">
                     <label for=""> Selecione o código para alterar </label>
-                    <select name="txtCodLivro" size="1">
-                        <?php foreach ($aut_bd as $aut_mostrar) {
+                    <select name="txtCodAutor" size="1">
+                        <?php foreach ($aut_bd as $aut_mostrar) { 
                             echo '<option value = "' . $aut_mostrar[0] . '">' . $aut_mostrar[0] . ' - ' . $aut_mostrar[1] .'</option>';
                         } ?>
                     </select>
