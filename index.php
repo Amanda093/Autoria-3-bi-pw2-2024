@@ -11,6 +11,11 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            a {
+                text-decoration: none;
+                color:  #2b134b;
+            }
         </style>
 
         <script language=javascript>
@@ -63,12 +68,25 @@
             foreach($pro_bd as $pro_mostrar)
             {
                 $existe = true; ?>
-                <form action="">
-                    <div class="row">
-                        <br><h2><?php echo "Seja bem vindo! "?></h2><br><br>
-                        <button onclick="location.href = 'menu.php'">Entrar</button>
-                    </div>
-                </form>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                    Swal.fire({
+                        title: "Seja bem vindo!!",
+                        confirmButtonColor: " #1f945d",
+                        color: "#201b2c",
+                        
+                        imageUrl: "img/peixinho.gif",
+                        imageWidth: 200,
+                        imageAlt: "Peixe colorido",
+                        
+                        background: "#100d16",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        window.location.href = 'menu.php'; // Redireciona ao clicar no botão de confirmação
+                    }
+                    });
+                });
+                </script>
                 <?php
             }
             if($existe==false) {

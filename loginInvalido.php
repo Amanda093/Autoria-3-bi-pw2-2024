@@ -11,6 +11,11 @@
                 justify-content: center;
                 align-items: center;
             }
+            
+            a {
+                text-decoration: none;
+                color:  #2b134b;
+            }
         </style>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -22,14 +27,25 @@
     </head>
     <body>
         <section>
-            <form name="cliente" method="POST" action="">
-                <h2 class="title"> Usuário ou Senha Incorretos!!! </h2>
-                <br>
-                </div>
-                <div class="row">
-                    <button><a href="index.php">Voltar</a></button>
-                </div>
-            </form>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            Swal.fire({
+                title: "Usuário ou senha incorretos!",
+                confirmButtonColor: " #1f945d",
+                color: "#201b2c",
+                
+                imageUrl: "img/peixinho.gif",
+                imageWidth: 200,
+                imageAlt: "Peixe colorido",
+                
+                background: "#100d16",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                window.location.href = 'index.php'; // Redireciona ao clicar no botão de confirmação
+            }
+            });
+        });
+        </script>
         </section>
     </body>
 </html>
